@@ -3,6 +3,10 @@
   export let form;
   let loading = false;
 
+  let redirectTo = $page.url.searchParams.has("redirectTo")
+    ? "&redirectTo=" + $page.url.searchParams.get("redirectTo")
+    : "";
+
   const submitForm = () => {
     form = null;
     loading = true;
@@ -25,7 +29,7 @@
   on:submit={submitForm}
   class="m-8 bg-white border-2 border-slate-300 p-4 flex flex-col gap-4"
   method="POST"
-  action={`${$page.url.search}&/login`}
+  action={`?/login${redirectTo}`}
 >
   <h1 class="text-4xl font-bold text-slate-800">LOGIN</h1>
 
@@ -61,7 +65,7 @@
   <div>
     <button
       class="border-2 border-slate-500   text-xl font-semibold px-4 py-2 w-full"
-      formaction={`${$page.url.search}&/register`}
+      formaction={`?/register${redirectTo}`}
       type="submit"
       name="register">Daftar</button
     >
